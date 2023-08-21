@@ -32,13 +32,17 @@ function update() {
     context.fillStyle = "black";
     context.fillRect(0, 0, board.width, board.height); // Fix the typo here
 
+    context.fillStyle = "red";
+    context.fillRect(foodX, foodY, blockSize, blockSize);
+    
+    if(snakeX == foodX && snakeY == foodY){
+        placeFood();
+    }
     context.fillStyle = "lime";
     snakeX += velocityX * blockSize;
     snakeY += velocityY * blockSize;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
-    context.fillStyle = "red";
-    context.fillRect(foodX, foodY, blockSize, blockSize);
 
 }
 
@@ -48,19 +52,19 @@ function placeFood(){
 }
 
 function changeDirection(e){
-    if(e.code == "ArrowUp"){
+    if(e.code == "ArrowUp" && velocityY != 1){
         velocityX = 0;
         velocityY = -1; 
     }
-    if(e.code == "ArrowDown"){
+    if(e.code == "ArrowDown" && velocityY != -1){
         velocityX = 0;
         velocityY = 1; 
     }
-    if(e.code == "ArrowLeft"){
+    if(e.code == "ArrowLeft" && velocityX != 1){
         velocityX = -1;
         velocityY = 0; 
     }
-    if(e.code == "ArrowRight"){
+    if(e.code == "ArrowRight" && velocityX != -1){
         velocityX = 1;
         velocityY = 0; 
     }
