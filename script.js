@@ -25,7 +25,7 @@ window.onload = function() {
 
     placeFood();
     document.addEventListener("keyup", changeDirection);
-    requestAnimationFrame(update); // Call the update function using requestAnimationFrame
+    requestAnimationFrame(update, 1000/10)
 }
 
 function update() {
@@ -33,6 +33,8 @@ function update() {
     context.fillRect(0, 0, board.width, board.height); // Fix the typo here
 
     context.fillStyle = "lime";
+    snakeX += velocityX * blockSize;
+    snakeY += velocityY * blockSize;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
     context.fillStyle = "red";
