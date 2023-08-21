@@ -24,8 +24,8 @@ window.onload = function() {
     context = board.getContext("2d");
 
     placeFood();
-    document.addEventListener("keyup", changeDirection);
-    requestAnimationFrame(update, 1000/10)
+    document.addEventListener("keydown", changeDirection);
+    setInterval(update, 1000/10)
 }
 
 function update() {
@@ -40,7 +40,6 @@ function update() {
     context.fillStyle = "red";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
-    requestAnimationFrame(update); // Continue updating in a loop
 }
 
 function placeFood(){
