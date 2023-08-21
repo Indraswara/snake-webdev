@@ -1,22 +1,37 @@
-
 var blockSize = 25;
 var rows = 20;
 var cols = 20;
-var board; 
-var context; 
+var board;
+var context;
 
 
-window.onload = function(){
+//snake head
+
+var snakeX = blockSize * 5;
+var snakeY = blockSize * 5;
+
+//food 
+var foodX = blockSize * 10;
+var foodY = blockSize * 10;
+
+window.onload = function() {
     board = document.getElementById("board");
-    board.heigth = rows  * blockSize;
+    board.height = rows * blockSize; // Fix the typo here
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
-    update()
+    requestAnimationFrame(update); // Call the update function using requestAnimationFrame
 }
 
-function update(){
-    context.fillstyle = "red";
-    context.fillRect(0, 0, board.width, board.heigth);
-    
+function update() {
+    context.fillStyle = "black";
+    context.fillRect(0, 0, board.width, board.height); // Fix the typo here
+
+    context.fillStyle = "lime";
+    context.fillRect(snakeX, snakeY, blockSize, blockSize);
+
+    context.fillStyle = "red";
+    context.fillRect(foodX, foodY, blockSize, blockSize);
+    requestAnimationFrame(update); // Continue updating in a loop
 }
+
