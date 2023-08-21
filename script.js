@@ -10,6 +10,9 @@ var context;
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
 
+var velocityX = 0; 
+var velocityY = 0;
+
 //food 
 var foodX;
 var foodY;
@@ -20,6 +23,8 @@ window.onload = function() {
     board.width = cols * blockSize;
     context = board.getContext("2d");
 
+    placeFood();
+    document.addEventListener("keyup", changeDirection);
     requestAnimationFrame(update); // Call the update function using requestAnimationFrame
 }
 
@@ -39,5 +44,24 @@ function update() {
 function placeFood(){
     foodX = Math.floor(Math.random() * rows) * blockSize;
     foodY = Math.floor(Math.random() * cols) * blockSize;
+}
+
+function changeDirection(e){
+    if(e.code == "ArrowUp"){
+        velocityX = 0;
+        velocityY = -1; 
+    }
+    if(e.code == "ArrowDown"){
+        velocityX = 0;
+        velocityY = 1; 
+    }
+    if(e.code == "ArrowLeft"){
+        velocityX = -1;
+        velocityY = 0; 
+    }
+    if(e.code == "ArrowRight"){
+        velocityX = 1;
+        velocityY = 0; 
+    }
 }
 
